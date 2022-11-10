@@ -1,0 +1,69 @@
+grammar bdroussi.nkouadio.tl.tp2.WL with org.eclipse.xtext.common.Terminals
+
+generate wL "http://www.nkouadio.bdroussi/tl/tp2/WL"
+
+Program:
+	functions+=Function+;
+
+Function:
+	'function' Symbol ':' Definition;
+
+Definition:
+	'read' Input '%' Commands '%' 'write' Output;
+
+Input:
+	Variable ',' Input | Variable;
+
+Output:
+	Variable ',' Output | Variable;
+
+Commands:
+	Command (';' Commands)?;
+
+Command:
+	'nop' | Vars ':=' Exprs | CommandIf | CommandFor | CommandForEach;
+
+CommandIf:
+	'if' Expresssion 'then' Commands ('else' Commands)? 'fi';
+
+CommandFor:
+	'while' Expresssion 'do' Commands 'od' | 'for' Expresssion 'do' Commands 'od';
+
+CommandForEach:
+	'foreach' Variable 'in' Expresssion 'do' Commands 'od';
+
+ExprBase:
+	'nil' | Variable | Symbol | '(' Symbol LExpr ')' | ExprBaseCons | ExprsBaseHd;
+
+ExprBaseCons:
+	'(' 'cons' LExpr ')' | '(' 'list' LExpr ')';
+
+ExprsBaseHd:
+	'(' 'hd' ExprBase ')' | '(' 'tl' ExprBase ')';
+
+LExpr:
+	(ExprBase LExpr)?;
+
+Exprs:
+	Expresssion (',' Exprs)?;
+
+Expresssion:
+	ExprBase ('=?' ExprBase)?;
+
+Vars:
+	Variable ',' Vars | Variable;
+
+terminal Maj:
+	('A'..'Z');
+
+terminal Min:
+	('a'..'z');
+
+terminal Dec:
+	('0'..'9');
+
+terminal Variable:
+	Maj (Maj | Min | Dec)* ('?' | '!');
+
+terminal Symbol:
+	Min (Maj | Min | Dec)* ('?' | '!');

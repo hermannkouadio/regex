@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete 5 resources" deleteContents="true" description="Delete 5 resources" element1="/broussi.nkouadio.tl.tp2" element2="/broussi.nkouadio.tl.tp2.ide" element3="/broussi.nkouadio.tl.tp2.tests" element4="/broussi.nkouadio.tl.tp2.ui" element5="/broussi.nkouadio.tl.tp2.ui.tests" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="5" stamp="1613030009593"/>
+</session>
